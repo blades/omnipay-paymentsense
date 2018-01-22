@@ -9,7 +9,7 @@ use Omnipay\Common\Message\AbstractRequest;
 /**
  * PaymentSense Purchase Request
  */
-class CrossReferenceTransactionRequest extends AbstractRequest
+class PurchaseRequest extends AbstractRequest
 {
     protected $endpoint = 'https://gw1.paymentsensegateway.com:4430/';
     protected $namespace = 'https://www.thepaymentgateway.net/';
