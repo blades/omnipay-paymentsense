@@ -48,7 +48,21 @@ class Gateway extends AbstractGateway
 
     public function purchase(array $parameters = array())
     {
-        return $this->createRequest('\Coatesap\PaymentSense\Message\PurchaseRequest', $parameters);
+        if(isset($parameters['cardReference']))
+        {
+            $parameters['action'] = 'SALE';
+            return $this->createRequest('\Coatesap\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
+        }
+        else
+        {
+            return $this->createRequest('\Coatesap\PaymentSense\Message\PurchaseRequest', $parameters);
+        }
+    }
+
+    public function refund(array $parameters = array())
+    {
+        $parameters['action'] = 'REFUND';
+        return $this->createRequest('\Coatesap\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
     }
 
     public function completePurchase(array $parameters = array())
