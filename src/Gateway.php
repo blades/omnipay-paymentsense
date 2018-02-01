@@ -62,6 +62,7 @@ class Gateway extends AbstractGateway
     public function refund(array $parameters = array())
     {
         $parameters['action'] = 'REFUND';
+        $parameters['cardReference'] = $parameters['transactionReference'];
         return $this->createRequest('\Coatesap\PaymentSense\Message\CrossReferenceTransactionRequest', $parameters);
     }
 
